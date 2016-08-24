@@ -5,7 +5,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-
+/**
+ * 
+ * @author ≤‚ ‘
+ *
+ */
 public class SessionContext {
 	
 	private static SessionContext sm = null;
