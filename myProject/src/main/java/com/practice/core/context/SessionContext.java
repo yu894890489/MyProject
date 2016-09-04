@@ -17,14 +17,14 @@ public class SessionContext {
 	
 	
 	/**
-	 * 绉佹湁
+	 * 私有
 	 */
 	private SessionContext(){
 		map = new HashMap<String,HttpSession>();
 	}
 	
 	/**
-	 * 鍗曚緥 
+	 * 单例 
 	 * @return
 	 */
 	public static SessionContext newInstance(){
@@ -50,7 +50,7 @@ public class SessionContext {
 	/**
 	 * 删除单个session
 	 */
-	public synchronized boolean deleteSession(String sessionId){
+	public synchronized boolean removeSession(String sessionId){
 		return map.remove(sessionId) != null;
 	}
 	
@@ -58,7 +58,7 @@ public class SessionContext {
 	 * 删除全部session
 	 * @return
 	 */
-	public synchronized boolean deleteAllSession(){
+	public synchronized boolean removeAllSession(){
 		for(String str: map.keySet()){
 			if(map.remove(str) == null){
 				return false;
@@ -79,8 +79,8 @@ public class SessionContext {
 	/**
 	 * 销毁sessionContext
 	 */
-	public synchronized void destorySessionContext(){
-		deleteAllSession();
+	public synchronized void removeSessionContext(){
+		removeAllSession();
 		sm = null;
 	}
 

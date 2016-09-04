@@ -31,7 +31,7 @@ public class GobalListener extends ContextLoaderListener  implements HttpSession
 		
 		HttpSession session = se.getSession();
 		log.info("Ïú»Ùsession£ºsessionId--->"+session.getId());
-		sc.deleteSession(session.getId());
+		sc.removeSession(session.getId());
 		
 	}
 
@@ -40,7 +40,7 @@ public class GobalListener extends ContextLoaderListener  implements HttpSession
 		super.contextDestroyed(sce);
 
 		log.info("ÈÝÆ÷Ïú»Ù");
-		sc.destorySessionContext();
+		sc.removeSessionContext();
 		
 		
 	}
