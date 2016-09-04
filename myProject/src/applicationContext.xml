@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd" >
+
+	
+	<!-- SpringMVC -->
+	<context:component-scan base-package="yu"/><!--要改动包名 -->
+	<!-- <context:property-placeholder location="classpath:MySQL1.properties"/> -->
+	<!-- 连接池对象  -->
+	<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="username" value="#{mysql.username}"></property>
+		<property name="url" value="#{mysql.url}"></property>
+		<property name="password" value="#{mysql.password}"></property>
+		<property name="driverClassName" value="#{mysql.driverClassName}"></property>
+	</bean>
+	<util:properties id="mysql" location="classpath:MySQL1.properties"></util:properties>
+	<!-- 配置SqlSessionFactory -->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 连接参数信息 -->
+		<property name="dataSource" ref="dbcp"></property>
+		<!-- SQL定义XML文件信息 --><!-- classpath自动定位到src文件下绝对路径 -->
+		<property name="mapperLocations" value="classpath:yu/mapper/*.xml"></property>
+	</bean>
+	<!-- 配置MapperScannerConfigurar，以扫描路径方式批量生成Mapper接口实现 -->
+	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="yu.dao"></property>
+		<!-- 指定带@MyBatisDao注解标记的接口才生成实现 -->
+		<!--  <property name="annotationClass" value="org.tarena.annotation.MyBatisDao"></property>-->
+		<!--<property name="sqlSessionFactory" ref="ssf"></property>--><!-- 可以省略 自动类型注入-->
+	</bean>	
+</beans>
