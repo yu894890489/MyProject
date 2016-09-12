@@ -4,9 +4,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<script type="text/javascript"><%=request.getContextPath()%>/js/publicJS/vue.js</script>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css">
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/publicJS/vue.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/publicJS/bootstrap.min.js">
 </head>
 <body>
 	<div class="container">
@@ -19,14 +19,12 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		window.onload = function(){
 			new Vue({
 			    el:'#app',
 			    data: {
 			        message:'hello vue.js.'
 			    }
 			});
-		}
 	</script>
 </body>
 </html>
