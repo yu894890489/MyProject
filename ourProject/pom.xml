@@ -188,10 +188,17 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.8.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160810</version>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.25-incubating</version>
+		</dependency>
 	</dependencies>
-
-
-
 	<build>
 		<finalName>ourProject</finalName>
 		<plugins>
@@ -233,7 +240,6 @@
 						<buildcommand>org.eclipse.wst.common.project.facet.core.builder</buildcommand>
 						<buildcommand>org.eclipse.wst.validation.validationbuilder</buildcommand>
 					</additionalBuildcommands>
-
 					<additionalProjectnatures>
 						<nature>org.springframework.ide.eclipse.core.springnature</nature>
 						<nature>org.maven.ide.eclipse.maven2Nature</nature>
