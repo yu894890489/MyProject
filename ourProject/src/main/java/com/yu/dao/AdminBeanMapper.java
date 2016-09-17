@@ -10,7 +10,9 @@ public interface AdminBeanMapper {
     int insertSelective(AdminBean record);
 
     AdminBean selectByPrimaryKey(String id);
-
+    
+    AdminBean getAdmin(AdminBean admin);
+    
     int updateByPrimaryKeySelective(AdminBean record);
 
     int updateByPrimaryKey(AdminBean record);

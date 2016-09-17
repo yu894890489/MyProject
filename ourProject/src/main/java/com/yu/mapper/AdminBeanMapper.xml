@@ -10,11 +10,25 @@
     <result column="update_time" property="updateTime" jdbcType="DATE" />
     <result column="creater" property="creater" jdbcType="VARCHAR" />
     <result column="updater" property="updater" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="del_flag" property="delFlag" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, password, phone, info, create_time, update_time, creater, updater, del_flag
+    id, name, password, phone, info, create_time, update_time, creater, updater, del_flag
   </sql>
+  <!-- 通过密码和用户名验证用户登陆-->
+  <select id="getAdmin" resultMap="BaseResultMap" parameterType="BaseResultMap">
+  	select <include refid="Base_Column_List" />
+  		from admin where delFlag='0'
+  		<if test="id != null" >and id=#{id}</if>
+  		<if test="password != null" >and password=#{password}</if>
+  		<if test="createTime != null" >and createTime=#{createTime}</if>
+  		<if test="updateTime != null" >and updateTime=#{updateTime}</if>
+  		<if test="creater != null" >and creater=#{creater}</if>
+  		<if test="info != null" >and info like '%#{info}%'</if>
+  		<if test="updater != null" >and updater=#{updater}</if>
+  		<if test="name != null" >and info like '%#{name}%'</if>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
@@ -26,11 +40,11 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.yu.bean.AdminBean" >
-    insert into admin (id, password, phone, 
+    insert into admin (id,name, password, phone, 
       info, create_time, update_time, 
       creater, updater, del_flag
       )
-    values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=VARCHAR},#{name} #{password,jdbcType=VARCHAR}, #{phone,jdbcType=BIGINT}, 
       #{info,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
       #{creater,jdbcType=VARCHAR}, #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}
       )
@@ -40,6 +54,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="name != null">
+      	name,
       </if>
       <if test="password != null" >
         password,
@@ -69,6 +86,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+      	#{name}
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
@@ -102,6 +122,9 @@
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="name != null">
+      	name = #{name}
+      </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=BIGINT},
       </if>
@@ -130,6 +153,7 @@
     update admin
     set password = #{password,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=BIGINT},
+      name = #{name},
       info = #{info,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=DATE},
       update_time = #{updateTime,jdbcType=DATE},
