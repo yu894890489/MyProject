@@ -17,7 +17,7 @@
     id, name, password, phone, info, create_time, update_time, creater, updater, del_flag
   </sql>
   <!-- 通过密码和用户名验证用户登陆-->
-  <select id="getAdmin" resultMap="BaseResultMap" parameterType="BaseResultMap">
+  <select id="getAdmin" resultMap="com.yu.bean.AdminBean" parameterType="BaseResultMap">
   	select <include refid="Base_Column_List" />
   		from admin where delFlag='0'
   		<if test="id != null" >and id=#{id}</if>
