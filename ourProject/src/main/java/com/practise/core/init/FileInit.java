@@ -1,8 +1,6 @@
 package com.practise.core.init;
 
 
-import java.io.File;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -103,7 +101,7 @@ public class FileInit {
 		}
 		try {
 			FileUtils.readAndWriteFile(SpringContext.getRealPath(jsPackage), jsGroup,SpringContext.getRealPath(jsPackage) ,commonName );
-			log.warn("公共"+mod+"文件合并成功，文件名"+commonName+",文件路径："+SpringContext.getRealPath(jsPackage+File.separator+commonName));
+			log.warn("公共"+mod+"文件合并成功，文件名"+commonName+",文件路径："+SpringContext.getRealPath(jsPackage+commonName));
 		} catch (Exception e) {
 			log.warn("公共"+mod+"文件合并失败");
 			e.printStackTrace();
