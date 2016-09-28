@@ -1,30 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<base href="<%=basePath%>">
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css">
-	<script type="text/javascript" src="<%=request.getContextPath()%>/js/publicJS/vue.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/js/publicJS/bootstrap.min.js">
+	<script type="text/javascript" src="js/publicJS/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<script type="text/javascript" src="js/publicJS/vue.js"></script>
+	<script type="text/javascript" src="js/publicJS/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/publicJS/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="js/register/bootstrap-datetimepicker.min.js"></script>
 </head>
-<body>
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3">
-			<h1>Vue demo</h1>
-			<div id="app">
-    			<div>{{message}}</div>
-   				 <input type="text" v-model="message">
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-			new Vue({
-			    el:'#app',
-			    data: {
-			        message:'hello vue.js.'
-			    }
-			});
-	</script>
-</body>
 </html>
